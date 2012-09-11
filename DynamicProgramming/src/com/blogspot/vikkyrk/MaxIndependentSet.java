@@ -1,6 +1,7 @@
 package com.blogspot.vikkyrk;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class MaxIndependentSet {
@@ -37,6 +38,7 @@ public class MaxIndependentSet {
 		sList.set(1,inputArr.get(0));
 		computeMISDynamicProg();
 		System.out.println("MISDynamic = " + sList.get(size));
+		System.out.println("MISSet = " + mList);
 	}
 	
 	private int computeMISRecursive(int n) {
@@ -52,7 +54,14 @@ public class MaxIndependentSet {
 	}
 	
 	ArrayList<Integer> sList = new ArrayList<Integer>(size+1);
+	LinkedList<Integer> mList = new LinkedList<Integer>();
 	
+	
+	/* 
+	 * Works for positive integers only. To support negative 
+	 * integers, we need to add a third condition to our algorithm
+	 * which checks if s2+m < m, if so s1 = m.   
+	 */
 	private void computeMISDynamicProg() {
 		int s1,s2;
 		for(int i=2; i<=size; i++) {
@@ -63,7 +72,12 @@ public class MaxIndependentSet {
 			else
 				sList.set(i, s1);
 		}
+		
+		for(int i=size; i>0; i--) {
+			if(sList.get(i) > sList.get(i-1)) {
+				mList.add(0,inputArr.get(i-1));
+				i--;
+			}
+		}
 	}
-	
-	
 }
