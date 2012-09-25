@@ -1,0 +1,16 @@
+1. Maximum Independent Set of a tree
+
+Soln: Choose all leaves, remove its parents and repeat till the root is reached. To implement it, 
+just do an Inorder traversal and return true or false to determine if a particular node has to be
+selected or not. To prove this, we can use the 'Exchange trick'. Suppose you have an optimal solution,
+by adding a leaf you can only increase the MIS or keep it the same. B'coz adding a leaf would remove its
+parent and nothing else.
+
+2. Fractional Knapsack
+
+Soln: Let s1, s2, .... sn be the size of items, v1,v2, ... vn be the value of items. 
+sum(xi*si) < B, sum(xi*vi) should be maximum. Since any fraction of an item allowed,
+sort the items according the the ratio 'vi/si'. Start choosing from the highest
+value of 'vi/si'.
+
+3.  
