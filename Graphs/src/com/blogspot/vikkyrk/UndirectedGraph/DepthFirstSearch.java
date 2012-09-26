@@ -1,17 +1,16 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.UndirectedGraph;
 
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
-public class BreadthFirstSearch {
+public class DepthFirstSearch {
 	
 	private boolean [] marked;
 	private int [] edgeTo;
 	private int source;
 	private UndirectedGraph uGr = null;
 	private int count = 0;
-	
-	public BreadthFirstSearch(UndirectedGraph Gr, int s) {
+	public DepthFirstSearch(UndirectedGraph Gr, int s) {
 		uGr = Gr;
 		source = s;
 		marked = new boolean[uGr.V()];
@@ -20,25 +19,38 @@ public class BreadthFirstSearch {
 			marked[i] = false;
 			edgeTo[i] = -1;
 		}
-
-		BreadthFirstSearchIterative(s);
+		//DepthFirstSearchRecursive(s);
+		DepthFirstSearchIterative(s);
 	}
 	
-	private void BreadthFirstSearchIterative(int s) {
-		Queue<Integer> mQueue = new LinkedList<Integer>();
+	@SuppressWarnings("unused")
+	private void DepthFirstSearchRecursive(int s) {
+		marked[s] = true;
+		count++;
+		edgeTo[s] = s;
+		for(int i:uGr.adj(s)) {
+			if(marked[i] == false) {
+				edgeTo[i] = s;
+				DepthFirstSearchRecursive(i);
+			}
+		}
+	}
+	
+	private void DepthFirstSearchIterative(int s) {
+		Stack<Integer> mStack = new Stack<Integer>();
 		
 		marked[s] = true;
 		edgeTo[s] = s;
-		mQueue.add(s);
+		mStack.push(s);
 	
-		while(!mQueue.isEmpty()) {
-			int v = mQueue.remove();
+		while(!mStack.isEmpty()) {
+			int v = mStack.pop();
 			count++;
 			for(int i: uGr.adj(v)) {
 				if(marked[i] == false) {
 					marked[i] = true;
 					edgeTo[i] = v;
-					mQueue.add(i);
+					mStack.push(i);
 				}
 			}
 		}
@@ -72,5 +84,4 @@ public class BreadthFirstSearch {
 			System.out.print(marked[i] + ", ");
 		}
 	}
-
 }

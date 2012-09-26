@@ -1,10 +1,19 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.UndirectedGraph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
+/*
+ * Although the Undirected Graph supports self-loops and
+ * parallel edges, some of the other algorithms in other
+ * classes might not. Be aware of these corner cases
+ * when asked to write a graph algorithm
+ * 
+ * TODO: Null checks not added in all the graph algorithms.
+ */
 public class UndirectedGraph {
 
 	private ArrayList<LinkedList<Integer>> vertices = null;

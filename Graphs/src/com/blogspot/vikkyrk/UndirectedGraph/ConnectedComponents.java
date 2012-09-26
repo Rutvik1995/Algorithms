@@ -1,4 +1,4 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.UndirectedGraph;
 
 import java.util.Stack;
 
