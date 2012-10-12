@@ -1,4 +1,4 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.pegDisks;
 
 import java.util.Collection;
 import java.util.HashMap;

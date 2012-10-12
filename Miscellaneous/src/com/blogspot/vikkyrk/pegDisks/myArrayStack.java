@@ -1,6 +1,7 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.pegDisks;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+
 
 
 public class myArrayStack<T> implements myStack<T> {

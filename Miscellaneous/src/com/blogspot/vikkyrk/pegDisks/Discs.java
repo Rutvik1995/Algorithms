@@ -1,8 +1,8 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.pegDisks;
 
 public class Discs {
-	int radius;
-	int currentPegId;
+	public int radius;
+	public int currentPegId;
 	int destinationPegId;
 	
 	public Discs(int rad, int id, int dest) {

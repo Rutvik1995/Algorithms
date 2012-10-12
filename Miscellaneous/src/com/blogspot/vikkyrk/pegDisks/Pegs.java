@@ -1,4 +1,5 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.pegDisks;
+
 
 
 public class Pegs extends myArrayStack<Discs>{

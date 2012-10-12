@@ -1,4 +1,4 @@
-package com.blogspot.vikkyrk;
+package com.blogspot.vikkyrk.pegDisks;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,12 +6,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
-public class mainTest {
-
+public class pegDisk {
 	public static String destState = "";
-	public static void main(String[] args) {
-		
+	public static void start() {
+		System.out.println("Enter Input: Read Problem statement for Input format");
 		ArrayList<ArrayList<Integer>> input = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Pegs> mPeg = new ArrayList<Pegs>();
 		destState = "";
@@ -24,7 +22,6 @@ public class mainTest {
 		
 		System.out.println("\nEnded");
 	}
-	
 	static int minCount = 8;
 	static chainHashMap<String> sMap = new chainHashMap<String>();
 	static myArrayStack<String> solStack = new myArrayStack<String>(8);
