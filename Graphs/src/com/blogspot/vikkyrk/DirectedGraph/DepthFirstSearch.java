@@ -9,6 +9,7 @@ public class DepthFirstSearch {
 	private int source;
 	private DirectedGraph dGr = null;
 	private int count = 0;
+	
 	public DepthFirstSearch(DirectedGraph mGr, int s) {
 		this.dGr = mGr;
 		source = s;
@@ -18,15 +19,14 @@ public class DepthFirstSearch {
 			marked[i] = false;
 			edgeTo[i] = -1;
 		}
-		//DepthFirstSearchRecursive(s);
-		DepthFirstSearchIterative(s);
+
+		edgeTo[s] = s;
+		DepthFirstSearchRecursive(s);
 	}
 	
-	@SuppressWarnings("unused")
 	private void DepthFirstSearchRecursive(int s) {
 		marked[s] = true;
 		count++;
-		edgeTo[s] = s;
 		for(int i:dGr.adj(s)) {
 			if(marked[i] == false) {
 				edgeTo[i] = s;
@@ -35,6 +35,7 @@ public class DepthFirstSearch {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void DepthFirstSearchIterative(int s) {
 		Stack<Integer> mStack = new Stack<Integer>();
 		

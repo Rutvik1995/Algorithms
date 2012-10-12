@@ -27,7 +27,6 @@ public class DepthFirstSearch {
 	private void DepthFirstSearchRecursive(int s) {
 		marked[s] = true;
 		count++;
-		edgeTo[s] = s;
 		for(int i:uGr.adj(s)) {
 			if(marked[i] == false) {
 				edgeTo[i] = s;

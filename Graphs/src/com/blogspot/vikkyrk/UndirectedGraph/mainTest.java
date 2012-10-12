@@ -34,7 +34,7 @@ public class mainTest {
 		*/
 
 		BreadthFirstSearch bfs = new BreadthFirstSearch(myGraph,1);
-		System.out.println("Dfs count for verted 1 = " + bfs.count());
+		System.out.println("Bfs count for vertex 1 = " + bfs.count());
 
 		System.out.println("Path:" + bfs.path(3));
 
