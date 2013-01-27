@@ -11,7 +11,7 @@ public class LongestIncreasingSeq {
 	/*
 	 * This solution uses dynamic programming with complexity of O(n^2)
 	 * There are other techniques which solve this in O(nLogn) time.
-	 * To be explored later.
+	 * To be explored later. Also explore Longest path in a graph.
 	 */
 	private static ArrayList<Integer> generateRandomInput(int size) {
 		ArrayList<Integer> mList = new ArrayList<Integer>(size);

@@ -19,7 +19,12 @@ public class mainTest {
 */
 		//System.out.println(LongestIncreasingSeq.longestIncreasingSubSeq(10));
 		
-		System.out.println(KnapSack.computeKnapSack(1, (int)(1.25)*20, 20));
+		//System.out.println(KnapSack.computeKnapSack(1, (int)(1.25)*20, 20));
+		
+		String m = "difjabxmno";
+		String n = "idfjabydifjmno";
+		
+		LongestCommonSubstring.computeLCSS(m, n);
 	}
 	
 	private static List<Character> stringToList(String a) {
