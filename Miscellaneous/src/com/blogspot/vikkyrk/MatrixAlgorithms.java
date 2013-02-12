@@ -121,11 +121,54 @@ public class MatrixAlgorithms {
 	}
 	
 	public static void matrixTests() {
-		Matrix m = generateRandomMatrix(5,5,5);
+		Matrix m = generateRandomMatrix(1,1,5);
 		printMatrix(m);
 		//rotate90usingTranspose(m);
-		rotate90Layerwise(m);
-		printMatrix(m);
+		//rotate90Layerwise(m);
+		//printMatrix(m);
+		printSpiral(m);
+		
+	}
+	
+	public static void printSpiral(Matrix input) {
+		if(input == null || input.rowSize != input.columnSize) {
+			throw new RuntimeException("Input invalid");
+		}
+		
+		log("Spiral Matrix");
+		
+		for(int i=0; i<(input.rowSize+1)/2; i++) {
+			int r = i, c = i;
+			for(int k=0; k<4; k++) {
+				int  m = input.rowSize-1-2*i;
+				int rx,cx;
+				
+				if(k%2==0) {
+				    cx=1;
+				    rx=0;
+				}    
+				else {
+					rx=1;
+					cx=0;
+				}
+				
+				if(k>1) {
+					rx = rx * -1;
+					cx = cx * -1;
+				}
+				
+				for(int j=0; j<m; j++) {
+					System.out.print("" + input.arr[r][c] + " ");
+					r += rx;
+					c += cx;
+				}
+				
+				if(m==0) {
+					System.out.print("" + input.arr[r][c] + " ");
+					break;
+				}
+			}
+		}
 	}
 	
 	
