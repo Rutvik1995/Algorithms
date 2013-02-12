@@ -1,52 +1,52 @@
 package com.blogspot.vikkyrk.pegDisks;
+
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
-
-
 public class myArrayStack<T> implements myStack<T> {
 
-	private ArrayList<T> stack = new ArrayList<T>();
+    private ArrayList<T> stack = new ArrayList<T>();
 
-	public myArrayStack(int n) {
-		stack.ensureCapacity(n);
-	}
-	@Override
-	public int size() {
-		return stack.size();
-	}
+    public myArrayStack(int n) {
+        stack.ensureCapacity(n);
+    }
 
-	@Override
-	public void push(T t) {
-		stack.add(t);
-	}
+    @Override
+    public int size() {
+        return stack.size();
+    }
 
-	public T pop() throws EmptyStackException {
-		if(isEmpty()){
-			throw new EmptyStackException();
-		}
-		return stack.remove(stack.size()-1);
-	}
+    @Override
+    public void push(T t) {
+        stack.add(t);
+    }
 
-	@Override
-	public boolean isEmpty() {
-		return stack.isEmpty();
-	}
+    public T pop() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return stack.remove(stack.size() - 1);
+    }
 
-	public T peek() throws EmptyStackException {
-		if(isEmpty()) {
-			throw new EmptyStackException();
-		}
-		return stack.get(stack.size()-1);
-	}
+    @Override
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
 
-	@Override
-	public void clear() {
-		stack.clear();
-	}
+    public T peek() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return stack.get(stack.size() - 1);
+    }
 
-	@Override
-	public String toString() {
-		return stack.toString();
-	}
+    @Override
+    public void clear() {
+        stack.clear();
+    }
+
+    @Override
+    public String toString() {
+        return stack.toString();
+    }
 }

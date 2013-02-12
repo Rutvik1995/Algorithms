@@ -7,24 +7,25 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class mainTest {
-	public static void main(String[] args) {
-		File f = new File("/media/STUDY/Tech/AlgoWrkSpc/Graphs/src/edgeweightedGraphInput.txt");
-		FileReader fR = null;
+    public static void main(String[] args) {
+        File f = new File(
+                "/media/STUDY/Tech/AlgoWrkSpc/Graphs/src/edgeweightedGraphInput.txt");
+        FileReader fR = null;
 
-		try {
-			fR = new FileReader(f);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+        try {
+            fR = new FileReader(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-		EdgeWeightedUndirectedGraph myGraph = null;
-		try {
-			myGraph = new EdgeWeightedUndirectedGraph(new BufferedReader(fR));
-		} catch (IOException e) {
-			throw new RuntimeException("Error Creating Graph");
-		}
+        EdgeWeightedUndirectedGraph myGraph = null;
+        try {
+            myGraph = new EdgeWeightedUndirectedGraph(new BufferedReader(fR));
+        } catch (IOException e) {
+            throw new RuntimeException("Error Creating Graph");
+        }
 
-		System.out.println(myGraph);
+        System.out.println(myGraph);
 
-	}	
+    }
 }
