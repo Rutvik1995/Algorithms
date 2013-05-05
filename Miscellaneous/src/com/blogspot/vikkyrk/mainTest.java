@@ -10,7 +10,7 @@ public class mainTest {
         System.out.println(msg);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // pegDisk.start();
         // MiscAlgorithms.myPowersOfHanoiRecursion(4);
         // nQueensImpl.printList(nQueensImpl.nQueensSolve(4));
@@ -26,9 +26,74 @@ public class mainTest {
         // MiscAlgorithms.getStartElement();
         // MiscAlgorithms.testDecToRadix(3);
 
-        MatrixAlgorithms.matrixTests();
+        //MatrixAlgorithms.matrixTests();
+        
+        //ThreeElementSortTest();
+        
+        //kthSmallestTest();
+        
+        //arrayBalanceTest();
+        
+        //randomGenTest();
+        
+        wordFreqTest();
+    }
+    
+    public static void wordFreqTest() throws Exception {
+        WordFrequencyCount wF = new WordFrequencyCount();
+        wF.getTopKFrequentWords();
+    }
+    
+    public static void randomGenTest() {
+        int sizeA = 10;
+        int[] a = mainTest.convertToIntArray(mainTest.generateRandomPositiveIntegers(sizeA, 50));
+        for(int i=0; i<1; i++) {
+            RandomGen.randomShuffle(a);
+            for(int j: a) {
+                System.out.print(j + " ");
+            }
+            log("");
+        }
+        
+        RandomGen.printRandomSorted(10, 4);
+    }
+    
+    public static void arrayBalanceTest() {
+        int size = 1500;
+        
+        ArrayList<Integer> la = mainTest.generateRandomPositiveIntegers(size, 2);
+        MiscAlgorithms.findBalancedSubArray(la);
     }
 
+    public static void kthSmallestTest() {
+        int sizeA = 7, sizeB = 7;
+        
+        int[] a = mainTest.convertToIntArray(mainTest.generateRandomPositiveIntegers(sizeA, 5));
+        int[] b = mainTest.convertToIntArray(mainTest.generateRandomPositiveIntegers(sizeB, 5));
+        Arrays.sort(a);
+        Arrays.sort(b);
+        Random rG = new Random();
+        int k = rG.nextInt(sizeA+sizeB)+1;
+        
+        log("Finding " + k + "th smallest");
+        log("BruteForce = " + MiscAlgorithms.findKthSmallestBruteForce(a, b, k));
+        log("Optimized = " + MiscAlgorithms.findKthSmallest(a, b, k));
+    }
+    
+    public static void ThreeElementSortTest() {
+        int[] p = mainTest.convertToIntArray(mainTest.generateRandomPositiveIntegers(4, 3));
+        for (int i : p) {
+            System.out.print(i + ", ");
+        }
+        
+        System.out.println("");
+        MiscAlgorithms.ThreeElementSort(p);
+        
+        for (int i : p) {
+            System.out.print(i + ", ");
+        }
+    }
+    
     public static void BinarySearchTest() {
         ArrayList<Integer> mList = generateRandomPositiveIntegers(5, 5);
         int[] p = convertToIntArray(mList);

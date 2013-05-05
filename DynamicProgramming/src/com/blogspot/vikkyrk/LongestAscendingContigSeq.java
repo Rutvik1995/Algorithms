@@ -3,8 +3,12 @@ package com.blogspot.vikkyrk;
 import java.util.ArrayList;
 import java.util.Random;
 
-//Longest Ascending Contiguous Sequence
-public class LACS {
+/*
+ * Longest Ascending Contiguous Sequence
+ * No essentially dynamic programming
+ */
+
+public class LongestAscendingContigSeq {
 
     private static ArrayList<Integer> generateRandomInput(int size) {
         ArrayList<Integer> mList = new ArrayList<Integer>(size);

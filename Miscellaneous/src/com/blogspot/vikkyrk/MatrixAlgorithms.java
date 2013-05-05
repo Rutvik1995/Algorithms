@@ -127,7 +127,8 @@ public class MatrixAlgorithms {
         // rotate90usingTranspose(m);
         // rotate90Layerwise(m);
         // printMatrix(m);
-        printSpiral(m);
+        //printSpiral(m);
+        
 
     }
 
@@ -171,4 +172,18 @@ public class MatrixAlgorithms {
         }
     }
 
+    public void diagonalPrint(Matrix m) {
+        int r=0, c=0;
+        int st=0;
+        while(true) {
+            if(r < m.rowSize)
+                r++;
+            else if (true)
+                st++;
+            else if(st < m.columnSize)
+                st++;
+            
+            
+        }
+    }
 }

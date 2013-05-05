@@ -1,6 +1,6 @@
 package com.blogspot.vikkyrk;
 
-public class LongestCommonSeq {
+public class LongestCommonSubSequence {
 
     public static String computeLCS(String a, String b) {
         if ((a == null) || (b == null))

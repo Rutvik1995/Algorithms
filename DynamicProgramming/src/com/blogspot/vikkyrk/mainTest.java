@@ -12,20 +12,20 @@ public class mainTest {
          * String a = "abcaaeade"; String b = "abmnaaepa";
          * System.out.println(LongestCommonSeq.computeLCS(a,b));
          * System.out.println("LCS Specific = " +
-         * LongestCommonSeq.computeLCSDynamic(a,b));
+         * LongestCommonSubSequence.computeLCSDynamic(a,b));
          * 
          * System.out.println("LCS Generic = " +
          * LCSGeneric.computeLCS(stringToList(a), stringToList(b)));
          * System.out.println(LACS.computeLCS(5));
          */
-        // System.out.println(LongestIncreasingSeq.longestIncreasingSubSeq(10));
+         System.out.println(LongestIncreasingSubSequence.longestIncreasingSubSeq(10));
 
         // System.out.println(KnapSack.computeKnapSack(1, (int)(1.25)*20, 20));
 
-        String m = "difjabxmno";
-        String n = "idfjabydifjmno";
+        //String m = "difjabxmno";
+        //String n = "idfjabydifjmno";
 
-        LongestCommonSubstring.computeLCSS(m, n);
+        //LongestCommonSubstring.computeLCSS(m, n);
     }
 
     private static List<Character> stringToList(String a) {

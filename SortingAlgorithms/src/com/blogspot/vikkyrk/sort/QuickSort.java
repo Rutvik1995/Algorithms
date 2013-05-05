@@ -12,18 +12,25 @@ public class QuickSort implements Sort {
             return;
 
         // TODO:Randomize input before processing
-        sortInternal(arr, 0, arr.length - 1);
+        int count = sortInternal(arr, 0, arr.length - 1);
+        System.out.println("Quicksort Count = " + count);
     }
 
-    private void sortInternal(int[] arr, int st, int end) {
+    //TODO: Iterative QuickSort
+    private int sortInternal(int[] arr, int st, int end) {
 
         if (st < end) {
             int mid = splitAtPivot(arr, st, end);
-            sortInternal(arr, st, mid - 1);
-            sortInternal(arr, mid + 1, end);
+            return sortInternal(arr, st, mid - 1) +
+                   sortInternal(arr, mid + 1, end) +
+                   end - st + 1;
         }
+        
+        return 0;
     }
 
+    //TODO: 3Way partitioning to handle duplicate values
+    // Otherwise complexity is O(n^2)
     private int splitAtPivot(int[] arr, int st, int end) {
         int i = st + 1, j = end;
 

@@ -298,4 +298,239 @@ public class MiscAlgorithms {
 
         return low;
     }
+    
+    /*
+     * Array contains only 0, 1, 2.
+     */
+    public static void ThreeElementSort(int[] arr) {
+        int low = 0, high = arr.length-1;
+        int i = 0;
+        while(low<high && i <= high) {
+            if(arr[i] == 2) {
+                swap(arr, i , high);
+                high--;
+            } else if(arr[i] == 0) {
+                swap(arr,i,low);
+                low++;
+                if(arr[i] == 0)
+                    i++;
+            } else
+                i++;
+        }
+    }
+    
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+    }
+    
+    /*
+     * 2 Sorted Arrays, find the kth smallest element
+     * Can be used to find median of 2 sorted arrays
+     */
+    
+    public static int findKthSmallestBruteForce(int[] a, int[] b, int k) {
+        if(a==null || b==null || k > a.length + b.length)
+            throw new RuntimeException("Invalid Input");
+        int [] m = new int[a.length + b.length];
+        for(int i=0; i<a.length; i++)
+            m[i] = a[i];
+        for(int i=0; i<b.length; i++)
+            m[a.length+i] = b[i];
+        
+        Arrays.sort(m);
+        return m[k-1];
+    }
+    
+    public static int findKthSmallest(int[] a, int[] b, int k) {
+        if(a==null || b==null || k > a.length + b.length)
+            throw new RuntimeException("Invalid Input");
+        
+        return findKthSmallestInternal(a, 0, a.length, b, 0, b.length, k);
+    }
+    
+    private static int findKthSmallestInternal(int[] a, int aSt, int aEnd, 
+                                               int[] b, int bSt, int bEnd,
+                                               int k) {
+        
+        int lenA = aEnd-aSt;
+        int lenB = bEnd-bSt;
+        
+        int i = (int)((lenA * (k-1)/(lenA+lenB)));
+        int j = k-1 - i;
+
+        int Ai = (i == lenA) ? Integer.MAX_VALUE : a[aSt+i];
+        int Ai_1 = (i == 0) ? Integer.MIN_VALUE : a[aSt+i-1];
+        int Bj = (j == lenB) ? Integer.MAX_VALUE : b[bSt+j];
+        int Bj_1 = (j == 0) ? Integer.MIN_VALUE : b[bSt+j-1];
+        
+        if(Bj_1 <= Ai && Ai <= Bj)
+            return Ai;
+        
+        if(Ai_1 <= Bj && Bj <= Ai)
+            return Bj;
+        
+        if(Ai < Bj)
+            return findKthSmallestInternal(a, aSt+i+1, aEnd, b, bSt, bSt+j, k-i-1);
+        else
+            return findKthSmallestInternal(a, aSt, aSt+i, b, bSt+j+1, bEnd, k-j-1);
+        
+    }
+    
+    /*
+     * Given an array with only 0's and 1's, find an max length sub array
+     * which has equal number of 0's and 1's.
+     */
+    
+    public static void findBalancedSubArray(ArrayList<Integer> input) {
+        long sTime = System.currentTimeMillis();
+        
+        findBalancedSubArrayBruteForce(input);
+        
+        long eTime = System.currentTimeMillis();
+        System.out.println("BruteForce Time = " + (eTime - sTime));
+        
+        sTime = System.currentTimeMillis();
+        findBalancedSubArrayDynamicP(input);
+        eTime = System.currentTimeMillis();
+        System.out.println("Dynamic Time = " + (eTime - sTime));
+        
+        sTime = System.currentTimeMillis();
+        findBalancedSubArrayLinearTime(input);
+        eTime = System.currentTimeMillis();
+        System.out.println("Linear Time = " + (eTime - sTime));
+    }
+    
+    /*
+     * For ever sub array, count num 1's and 0's.
+     * O(n^3), O(1) memory
+     */
+    private static void findBalancedSubArrayBruteForce(ArrayList<Integer> input) {
+        if(input == null || input.size() == 0 || input.size() == 1)
+           System.out.println("No Balanced Array");
+        
+        int st = 0, end = 0;
+        
+        for(int i=0; i<input.size()-1; i++) {
+            for(int j=i+1; j<input.size(); j++) {
+                int countZero = 0, countOne = 0;
+                for(int k=i; k<=j; k++) {
+                    if(input.get(k) == 0)
+                        countZero++;
+                    else
+                        countOne++;
+                }
+                
+                if((countZero == countOne) && ((j-i) > (end-st))) {
+                    end = j;
+                    st = i;
+                }
+            }
+        }
+        
+        if(!(st == end))
+            System.out.println(" St = " + st + ", End = " + end);
+        else
+            System.out.println("No Balanced Array");
+    }
+    
+    /*
+     * O(n^2) , O(n^2) memory
+     */
+    private static void findBalancedSubArrayDynamicP(ArrayList<Integer> input) {
+        if(input == null || input.size() == 0 || input.size() == 1)
+           System.out.println("No Balanced Array");
+        
+        int[][] countZero = new int[input.size()][input.size()];
+        int[][] countOne = new int[input.size()][input.size()];
+        
+        int st = 0, end = 0;
+        
+        for(int i=0;i<countZero.length;i++) {
+            countZero[i][i] = 0;
+            countOne[i][i] = 0;
+            
+            if(input.get(i) == 0) 
+                countZero[i][i] = 1;
+            else
+                countOne[i][i] = 1;
+        }
+        
+        for(int i=0; i<input.size()-1; i++) {
+            for(int j=i+1; j<input.size(); j++) {
+                countZero[i][j] = countZero[i][j-1];
+                countOne[i][j] = countOne[i][j-1];
+                
+                if(input.get(j) == 0)
+                    countZero[i][j] = countZero[i][j-1] + 1;
+                else
+                    countOne[i][j] = countOne[i][j-1] + 1;
+                
+                if((countZero[i][j] == countOne[i][j]) && ((j-i) > (end-st))) {
+                    end = j;
+                    st = i;
+                }
+            }
+        }
+        
+        if(!(st == end))
+            System.out.println(" St = " + st + ", End = " + end);
+        else
+            System.out.println("No Balanced Array");
+    }
+    
+    /*
+     * O(n) time, O(n) memory
+     * Two cases
+     * 1. Prefix Sum array has Zero, so find the largest index with zero
+     * 2. Else, find largest matching indices.
+     * 
+     * ** Think about the 2D version of the problem.
+     */
+    private static void findBalancedSubArrayLinearTime(ArrayList<Integer> input) {
+        for(int i=0; i<input.size(); i++) {
+            if(input.get(i) == 0)
+                input.set(i, -1);
+        }
+        
+        // prefix sum
+        for(int i=1; i<input.size(); i++)
+            input.set(i, input.get(i) + input.get(i-1));
+        
+        HashMap<Integer, Integer> hMap = new HashMap<Integer, Integer>(input.size());
+        
+        int st = 0, end = 0;
+        
+        for(int i=0; i<input.size(); i++) {
+            int tempSt, tempEnd;
+            
+            if(input.get(i) == 0) {
+                if(i > (end - st)) {
+                    end = i;
+                    st = 0;
+                }
+                continue;
+            }
+            
+            if(!hMap.containsKey(input.get(i))) {
+                hMap.put(input.get(i), i);
+            } else {
+                tempEnd = i;
+                tempSt = hMap.get(input.get(i))+1;
+                
+                if((tempEnd - tempSt) > (end-st)) {
+                    end = tempEnd;
+                    st = tempSt;
+                }
+            }
+        }
+        
+        if(!(st == end))
+            System.out.println(" St = " + st + ", End = " + end);
+        else
+            System.out.println("No Balanced Array");
+        
+    }
+    
 }
